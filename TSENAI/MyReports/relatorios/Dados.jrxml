@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Dados" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="72f12127-cdb5-4cae-8542-6f3a7964942b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CopyOfSenai"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM senai.professor
+ORDER BY senai.professor.prof_nome]]>
+	</queryString>
+	<field name="prof_codigo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="prof_codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="prof_nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="prof_email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_telresidencial" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="prof_telresidencial"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_telcel1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="prof_telcel1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_telcel2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="prof_telcel2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_formaprinc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="prof_formaprinc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_atuaprinc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="prof_atuaprinc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_formasec" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="prof_formasec"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_atuasec" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="prof_atuasec"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_imagem" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="prof_imagem"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_curriculo" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="prof_curriculo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_nome_arquivo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="prof_nome_arquivo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<field name="prof_usua_codigo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="prof_usua_codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="professor"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="119" splitType="Stretch">
+			<image>
+				<reportElement x="185" y="5" width="201" height="81" uuid="0c2eaaac-0cf6-4549-84ff-7c6ee9e0e1b1"/>
+				<imageExpression><![CDATA["C:/Users/thyag/Pictures/Saved Pictures/Ass Digital SENAI.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="244" y="90" width="66" height="20" uuid="e4bd66d6-2a7b-485a-975b-e206819bd098"/>
+				<text><![CDATA[Professores]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="123" splitType="Stretch">
+			<textField>
+				<reportElement x="44" y="10" width="200" height="30" uuid="587916ff-50ca-47d9-ba57-083c34d9e038"/>
+				<textFieldExpression><![CDATA[$F{prof_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="10" width="266" height="30" uuid="b655d6b1-e2d5-46c0-8a0a-b9d18d52f023"/>
+				<textFieldExpression><![CDATA[$F{prof_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="40" width="92" height="30" uuid="2f41dcf2-5a63-44de-82c8-bcdd49d4bb22"/>
+				<textFieldExpression><![CDATA[$F{prof_telresidencial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="40" width="92" height="30" uuid="714d5366-fe0c-43a7-b069-baafdd20dea1"/>
+				<textFieldExpression><![CDATA[$F{prof_telcel1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="461" y="40" width="83" height="30" uuid="4a44fa7a-2d01-4046-bf9d-b469a9342d06"/>
+				<textFieldExpression><![CDATA[$F{prof_telcel2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="70" width="130" height="30" uuid="6f5b7429-5a3a-42ee-bfe8-98b4a5648bcc"/>
+				<textFieldExpression><![CDATA[$F{prof_formaprinc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="344" y="70" width="200" height="30" uuid="2fdcb9c4-d721-4db4-810b-bddc7414ae57"/>
+				<textFieldExpression><![CDATA[$F{prof_formasec}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="10" width="30" height="30" uuid="76383ba6-f27c-4f54-b0b2-3f213151366e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3cc82d5c-6b4b-4a7a-8f9b-4d858b2b876c"/>
+				</reportElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="10" width="34" height="30" uuid="7c450cd9-9681-4d0c-a033-cfddfc4d0575">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="049f1e29-a145-46c0-99fe-9e27107730fd"/>
+				</reportElement>
+				<text><![CDATA[E-mail:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="40" width="81" height="30" uuid="fb354a9d-ca94-4f45-aabf-88188d26c760">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="62a4d9ca-41d3-4146-8f94-b844736eeb48"/>
+				</reportElement>
+				<text><![CDATA[Tel. Residencial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="40" width="91" height="30" uuid="5b832251-fb5b-412b-94c8-27a290e446be">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a5a5b0af-f5be-491d-9605-f65fd5020806"/>
+				</reportElement>
+				<text><![CDATA[Tel. Celular:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="40" width="91" height="30" uuid="d127262d-4eb7-48df-8021-c49890c3ee85">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a5a5b0af-f5be-491d-9605-f65fd5020806"/>
+				</reportElement>
+				<text><![CDATA[Tel. Celular:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="70" width="90" height="30" uuid="428e3e45-5bf6-43e2-a997-da5245a2912a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="91bd7e42-2c90-46e3-9309-b012fff9418d"/>
+				</reportElement>
+				<text><![CDATA[Formação Principal:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="70" width="110" height="30" uuid="ccb56755-7ade-434a-81b3-00f2aa2f9aed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7de8dac5-f13c-49d6-951c-c7e3eabfad87"/>
+				</reportElement>
+				<text><![CDATA[Formação Secundária:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="93" width="530" height="21" uuid="dc89032f-69ce-48ee-a18b-c5f71f197709"/>
+				<text><![CDATA[_________________________________________________________________________________________________________
+]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="50"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="74" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="19" width="81" height="55" uuid="73c47cbb-c68c-442c-a2e6-264cf4b02870"/>
+				<imageExpression><![CDATA["C:/Users/thyag/Pictures/Nome.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="81" y="19" width="101" height="55" uuid="d841667b-8492-4879-9465-a95f10d2de5e"/>
+				<imageExpression><![CDATA["C:/Users/thyag/Pictures/Departamento.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="470" y="19" width="91" height="51" uuid="820e75dd-0070-4e3c-bb1c-2a5a4afe4659"/>
+				<imageExpression><![CDATA["C:/Users/thyag/Pictures/Endereço.png"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE, dd MMMM yyyy HH:mm">
+				<reportElement x="0" y="-2" width="182" height="21" uuid="330be39b-dced-49fd-944f-176deb0b08be"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="45" height="21" uuid="5efebf30-8d0d-42ce-b046-b46645e27ef6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="45" height="21" uuid="8502d3e4-00af-40af-a9a9-f4934c3bcb2d"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
