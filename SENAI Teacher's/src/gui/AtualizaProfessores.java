@@ -210,7 +210,7 @@ public class AtualizaProfessores extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					java.awt.Desktop.getDesktop()
-							.open(new File("C:\\Users\\" + user + "\\Documents\\TSENAI\\src\\Curriculo\\novo.pdf"));
+							.open(new File("C:\\Users\\" + user + "\\Documents\\SENAI Teachers\\src\\Curriculo\\novo.pdf"));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -243,46 +243,15 @@ public class AtualizaProfessores extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				ProfessorDAO pDAO = new ProfessorDAO();
 				Professor p = new Professor();
-
-				if (imagem == null && rota == null) {
-					p.setCodigo(Integer.parseInt(tfCodigo.getText()));
-					p.setNome(tfNome.getText());
-					p.setEmail(tfEmail.getText());
-					p.setTelResidencial(tfResidencial.getText());
-					p.setTelCel1(tfCelular1.getText());
-					p.setTelCel2(tfCelular2.getText());
-					p.setFormaPrinc(tfFormaPrinc.getText());
-					p.setAtuaPrinc(tfAtuaPrinc.getText());
-					p.setFormaSec(tfFormaSec.getText());
-					p.setAtuaSec(tfAtuaSec.getText());
-
-					pDAO.atualizarSemFotoSemArquivo(p, u.getNome());
-					TabelaProfessores.carregaDados(model);
-					setVisible(false);
-					TabelaProfessores td = new TabelaProfessores(u.getNome());
-					td.setVisible(true);
+//				File rota = new File(rota_arquivo);
+//				JOptionPane.showMessageDialog(null, rota_arquivo);
+				if (tfNome.getText().trim().length() == 0) {
+					JOptionPane.showMessageDialog(null, "Nome obrigtório");
 				} else {
-					if (imagem != null) {
-						p.setCodigo(Integer.parseInt(tfCodigo.getText()));
-						p.setNome(tfNome.getText());
-						p.setEmail(tfEmail.getText());
-						p.setTelResidencial(tfResidencial.getText());
-						p.setTelCel1(tfCelular1.getText());
-						p.setTelCel2(tfCelular2.getText());
-						p.setFormaPrinc(tfFormaPrinc.getText());
-						p.setAtuaPrinc(tfAtuaPrinc.getText());
-						p.setFormaSec(tfFormaSec.getText());
-						p.setAtuaSec(tfAtuaSec.getText());
-						p.setImagem(dao.ManipularImagem.getImgBytes(imagem));
-
-						pDAO.atualizarSemArquivo(p, u.getNome());
-						TabelaProfessores.carregaDados(model);
-						setVisible(false);
-						TabelaProfessores td = new TabelaProfessores(u.getNome());
-						td.setVisible(true);
+					if (tfEmail.getText().trim().length() == 0) {
+						JOptionPane.showMessageDialog(null, "Email obrigtório");
 					} else {
-						File rota = new File(rota_arquivo);
-						if (imagem == null && rota_arquivo.trim().length() != 0) {
+						if (imagem == null && rota_arquivo == null) {
 							p.setCodigo(Integer.parseInt(tfCodigo.getText()));
 							p.setNome(tfNome.getText());
 							p.setEmail(tfEmail.getText());
@@ -294,45 +263,89 @@ public class AtualizaProfessores extends JDialog {
 							p.setFormaSec(tfFormaSec.getText());
 							p.setAtuaSec(tfAtuaSec.getText());
 
-							byte[] pdf = new byte[(int) rota.length()];
-							p.setCurriculo(pdf);
-							p.setNomeArquivo(rota_arquivo);
-
-							pDAO.atualizarSemFoto(p, u.getNome());
-							JOptionPane.showMessageDialog(null, "nenuma imagem");
+							p.setUsuario(udao.getUsuario(u.getCodigo()));
+							System.out.println("sem nada");
+							pDAO.atualizarSemFotoSemArquivo(p, u.getNome());
 							TabelaProfessores.carregaDados(model);
 							setVisible(false);
-							TabelaProfessores td = new TabelaProfessores(u.getNome());
-							td.setVisible(true);
-							System.out.println(rota);
+							TabelaProfessores tp = new TabelaProfessores(u.getNome());
+							tp.setVisible(true);
 						} else {
+							if (imagem != null) {
+								p.setCodigo(Integer.parseInt(tfCodigo.getText()));
+								p.setNome(tfNome.getText());
+								p.setEmail(tfEmail.getText());
+								p.setTelResidencial(tfResidencial.getText());
+								p.setTelCel1(tfCelular1.getText());
+								p.setTelCel2(tfCelular2.getText());
+								p.setFormaPrinc(tfFormaPrinc.getText());
+								p.setAtuaPrinc(tfAtuaPrinc.getText());
+								p.setFormaSec(tfFormaSec.getText());
+								p.setAtuaSec(tfAtuaSec.getText());
+								p.setImagem(dao.ManipularImagem.getImgBytes(imagem));
+								System.out.println("com foto sem arquivo");
+								pDAO.atualizarSemArquivo(p, u.getNome());
+								TabelaProfessores.carregaDados(model);
+								setVisible(false);
+								TabelaProfessores td = new TabelaProfessores(u.getNome());
+								td.setVisible(true);
+							} else {
+								File rota = new File(rota_arquivo);
+								if (rota_arquivo.trim().length() != 0) {
+									p.setCodigo(Integer.parseInt(tfCodigo.getText()));
+									p.setNome(tfNome.getText());
+									p.setEmail(tfEmail.getText());
+									p.setTelResidencial(tfResidencial.getText());
+									p.setTelCel1(tfCelular1.getText());
+									p.setTelCel2(tfCelular2.getText());
+									p.setFormaPrinc(tfFormaPrinc.getText());
+									p.setAtuaPrinc(tfAtuaPrinc.getText());
+									p.setFormaSec(tfFormaSec.getText());
+									p.setAtuaSec(tfAtuaSec.getText());
 
-							p.setCodigo(Integer.parseInt(tfCodigo.getText()));
-							p.setNome(tfNome.getText());
-							p.setEmail(tfEmail.getText());
-							p.setTelResidencial(tfResidencial.getText());
-							p.setTelCel1(tfCelular1.getText());
-							p.setTelCel2(tfCelular2.getText());
-							p.setFormaPrinc(tfFormaPrinc.getText());
-							p.setAtuaPrinc(tfAtuaPrinc.getText());
-							p.setFormaSec(tfFormaSec.getText());
-							p.setAtuaSec(tfAtuaSec.getText());
-							p.setImagem(dao.ManipularImagem.getImgBytes(imagem));
+									byte[] pdf = new byte[(int) rota.length()];
+									p.setCurriculo(pdf);
+									p.setNomeArquivo(rota_arquivo);
+//									System.out.println(rota_arquivo);
+									System.out.println("sem foto com arquivo");
+									pDAO.atualizarSemFoto(p, u.getNome(), rota_arquivo);
+									JOptionPane.showMessageDialog(null, "nenhuma imagem");
+									TabelaProfessores.carregaDados(model);
+									setVisible(false);
+									TabelaProfessores td = new TabelaProfessores(u.getNome());
+									td.setVisible(true);
+									System.out.println(rota);
+								} else {
 
-							byte[] pdf = new byte[(int) rota.length()];
-							p.setCurriculo(pdf);
-							p.setNomeArquivo(rota_arquivo);
-							pDAO.atualizar(p, u.getNome());
-							TabelaProfessores.carregaDados(model);
-							setVisible(false);
-							TabelaProfessores td = new TabelaProfessores(u.getNome());
-							td.setVisible(true);
-							System.out.println(rota);
+									p.setCodigo(Integer.parseInt(tfCodigo.getText()));
+									p.setNome(tfNome.getText());
+									p.setEmail(tfEmail.getText());
+									p.setTelResidencial(tfResidencial.getText());
+									p.setTelCel1(tfCelular1.getText());
+									p.setTelCel2(tfCelular2.getText());
+									p.setFormaPrinc(tfFormaPrinc.getText());
+									p.setAtuaPrinc(tfAtuaPrinc.getText());
+									p.setFormaSec(tfFormaSec.getText());
+									p.setAtuaSec(tfAtuaSec.getText());
+									p.setImagem(dao.ManipularImagem.getImgBytes(imagem));
+									byte[] pdf = new byte[(int) rota.length()];
+									p.setCurriculo(pdf);
+									p.setNomeArquivo(rota_arquivo);
+									p.setUsuario(udao.getUsuario(u.getCodigo()));
+									System.out.println("normal");
+					
+									pDAO.atualizar(p, u.getNome(), rota_arquivo);
+									TabelaProfessores.carregaDados(model);
+									setVisible(false);
+									TabelaProfessores td = new TabelaProfessores(u.getNome());
+									td.setVisible(true);
+									System.out.println(rota);
+								}
+							}
 						}
 					}
 				}
 			}
-
 		});
 
 		JLabel lblCdigo = new JLabel("C\u00F3digo:");
@@ -369,7 +382,7 @@ public class AtualizaProfessores extends JDialog {
 
 		JButton btnAbrirCurrirulo = new JButton("Abrir");
 		btnAbrirCurrirulo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser fc = new JFileChooser();
 				FileNameExtensionFilter filtro = new FileNameExtensionFilter("PDF", "pdf");
 				fc.addChoosableFileFilter(filtro);
@@ -379,6 +392,14 @@ public class AtualizaProfessores extends JDialog {
 				if (res == 0) {
 					tfCurriculo.setText("" + fc.getSelectedFile().getName());
 					rota_arquivo = fc.getSelectedFile().getAbsolutePath();
+					btnMostraCurriculo.setIcon(new javax.swing.ImageIcon(
+							"C:\\Users\\" + user + "\\Documents\\SENAI Teachers\\src\\Imagem\\lpdf.png"));
+					File arquivo = fc.getSelectedFile();
+					String caminho = arquivo.getAbsolutePath();
+					caminho = caminho.replace('\\', '/');
+					tfCurriculo.setText(caminho);
+					String nomeArq = new File(caminho).getName();
+					System.out.println(caminho);
 				} else
 					System.out.println("Deu tudo errado...");
 			}

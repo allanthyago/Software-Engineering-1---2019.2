@@ -128,15 +128,19 @@ public class AtualizarObservacao extends JDialog {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				o.setTexto(textArea.getText());
-				o.setData(data);
-				o.setHora(hora);
-				o.setUsuario(udao.getUsuario(u.getCodigo()));
-				o.setTipo((String) comboBox.getSelectedItem());
-				odao.atualizar(o);
-				setVisible(false);
-				TabelaObservacao jo = new TabelaObservacao(p.getCodigo(), u.getNome());
-				jo.setVisible(true);
+				if(textArea.getText().trim().length()==0) {
+					JOptionPane.showMessageDialog(null, "Detalhe a observação sobre o professor");
+				}else {
+					o.setTexto(textArea.getText());
+					o.setData(data);
+					o.setHora(hora);
+					o.setUsuario(udao.getUsuario(u.getCodigo()));
+					o.setTipo((String) comboBox.getSelectedItem());
+					odao.atualizar(o);
+					setVisible(false);
+					TabelaObservacao jo = new TabelaObservacao(p.getCodigo(), u.getNome());
+					jo.setVisible(true);
+				}
 			}
 		});
 		

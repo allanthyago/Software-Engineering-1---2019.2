@@ -13,7 +13,7 @@ import gui.JanelaPrincipalSenai;
 
 public class LoginDAO {
 //	private String getSQL = "select * from usuario where usua_login = ? and usua_senha = cast(aes_decrypt(usua_senha, 'çsenha') as char)=?";
-	private String getSQL = "select * from usuario where usua_login = ? and usua_senha = ?";
+	private String getSQL = "select * from usuario where binary usua_login=? and binary usua_senha=?";
 	
 	UsuarioDAO udao = new UsuarioDAO();
 	public Usuario logar(String login, String senha) {

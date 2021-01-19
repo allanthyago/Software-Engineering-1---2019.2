@@ -163,11 +163,11 @@ public class TabelaProfessores extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				int linha = table.getSelectedRow();
 				int codigo = (int) table.getValueAt(linha, 0);
-				boolean teste = odao.verificaObsProf(linha);
+				boolean teste = odao.verificaObsProf(codigo);
 				int reply = JOptionPane.showConfirmDialog(null, "Deseja excluir cadastro?", "Cadastro de Professor",
 						JOptionPane.YES_NO_OPTION);
 				if (reply == JOptionPane.YES_OPTION) {
-					if (teste == true) {
+					if (teste == false) {
 						ProfessorDAO pdao = new ProfessorDAO();
 						pdao.excluir(codigo);
 						TabelaProfessores.carregaDados(modelTD);

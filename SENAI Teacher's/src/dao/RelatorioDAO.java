@@ -23,8 +23,8 @@ public class RelatorioDAO {
 
 	private static String user = System.getProperty("user.name");
 	private static final String FOLDER_RELATORIOS="C:\\Users\\"+user+"\\Documents\\SENAI Teachers\\MyReports\\relatorios";
-	private String getSQL = "select * from professor order by prof_nome";
-	private String formacao = "select * from professor where prof_formaprinc = ? order by prof_nome";
+	private String getSQL = "select * from senai.professor order by prof_nome";
+	private String formacao = "select * from senai.professor where prof_formaprinc = ? order by prof_nome";
 	
 	public Professor getForm(String nome) {
 		Conexao c = new Conexao();

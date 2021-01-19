@@ -128,6 +128,9 @@ public class AtualizarObservacaoEdProf extends JDialog {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			if(textArea.getText().trim().length()==0) {	
+				JOptionPane.showMessageDialog(null, "Detalhe a observação sobre o professor");
+			}else {
 				o.setTexto(textArea.getText());
 				o.setData(data);
 				o.setHora(hora);
@@ -135,8 +138,9 @@ public class AtualizarObservacaoEdProf extends JDialog {
 				o.setTipo((String) comboBox.getSelectedItem());
 				odao.atualizar(o);
 				setVisible(false);
-				TabelaObsEdirProf jo = new TabelaObsEdirProf(p.getCodigo(), u.getNome());
+				TabelaObservacao jo = new TabelaObservacao(p.getCodigo(), u.getNome());
 				jo.setVisible(true);
+			}
 			}
 		});
 		

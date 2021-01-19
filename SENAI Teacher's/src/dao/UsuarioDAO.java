@@ -22,7 +22,7 @@ public class UsuarioDAO {
 //	private String insert = "insert into usuario(usua_nome,usua_login,usua_senha,usua_perfil) values(?,?,aes_encrypt(?,'çsenha'),?)";
 //	private  String update = "UPDATE set usua_nome=?,usua_login=?, usua_senha = aes_decrypt(?,'çsenha'),usua_perfil=? where usua_codigo=?";
 	private String insert = "insert into usuario(usua_nome,usua_login,usua_senha,usua_perfil) values(?,?,?,?)";
-	private  String update = "UPDATE set usua_nome=?,usua_login=?, usua_senha = ?,usua_perfil=? where usua_codigo=?";
+	private  String update = "update usuario set usua_nome=?,usua_login=?,usua_senha=?,usua_perfil=? where usua_codigo=?";
 	private String deleteSQL = "delete from usuario where usua_codigo=?";
 	private String listSQL = "select * from usuario order by usua_nome";
 	
@@ -70,7 +70,8 @@ public class UsuarioDAO {
 	//a linha abaixo atualiza a tabela usuario com os dados do formulário
 	                //a etrutura abaixo é usada para confirmar a alteração dos dados na tabela
 				 pst.executeUpdate();
-				 
+				 JOptionPane.showMessageDialog(null, "Atualização de dados com sucesso.");
+
 			 }
 		 } catch (Exception e) {
 			 JOptionPane.showMessageDialog(null, e);

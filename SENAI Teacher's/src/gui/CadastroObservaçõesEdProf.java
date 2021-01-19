@@ -93,16 +93,20 @@ public class CadastroObservaçõesEdProf extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				ObservacaoDAO odao = new ObservacaoDAO();
 				Observacao o = new Observacao();
-				o.setTexto(textArea.getText());
-				o.setData(data);
-				o.setHora(hora);
-				o.setProfessor(pdao.getProfessor(p.getCodigo()));
-				o.setUsuario(udao.getUsuario(u.getCodigo()));
-				o.setTipo((String) comboBox.getSelectedItem());
-				odao.incluir(o);
-				setVisible(false);
-				TabelaObsEdirProf jo = new TabelaObsEdirProf(p.getCodigo(), u.getNome());
-				jo.setVisible(true);
+				if(textArea.getText().trim().length()==0) {
+					JOptionPane.showMessageDialog(null, "Detalhe a observação sobre o professor");
+				}else {
+					o.setTexto(textArea.getText());
+					o.setData(data);
+					o.setHora(hora);
+					o.setProfessor(pdao.getProfessor(p.getCodigo()));
+					o.setUsuario(udao.getUsuario(u.getCodigo()));
+					o.setTipo((String) comboBox.getSelectedItem());
+					odao.incluir(o);
+					setVisible(false);
+					TabelaObservacao jo = new TabelaObservacao(p.getCodigo(), u.getNome());
+					jo.setVisible(true);
+				}
 			}
 		});
 		

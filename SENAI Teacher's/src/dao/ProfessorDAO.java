@@ -21,11 +21,11 @@ import entity.Usuario;
 
 public class ProfessorDAO {
 	UsuarioDAO udao = new UsuarioDAO();
-	private String insertSQL = "insert into professor (prof_nome, prof_email, prof_telresidencial, prof_telcel1, prof_telcel2, prof_formaprinc, prof_atuaprinc, prof_formasec, prof_atuasec, prof_imagem, prof_curriculo,prof_nome_arquivo, prof_usua_codigo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	private String listSQL = "select * from professor order by prof_nome";
-	private String updateSQL = "update professor set prof_nome=?, prof_email=?, prof_telresidencial=?, prof_telcel1=?, prof_telcel2=?, prof_formaprinc=?, prof_atuaprinc=?, prof_formasec=?, prof_atuasec=?, prof_imagem=?, prof_curriculo=?, prof_nome_arquivo=?, prof_usua_codigo=? where prof_codigo=?";
-	private String deleteSQL = "delete from professor where prof_codigo=?";
-	private String getSQL = "select * from professor where prof_codigo=?";
+	private String insertSQL = "insert into senai.professor (prof_nome, prof_email, prof_telresidencial, prof_telcel1, prof_telcel2, prof_formaprinc, prof_atuaprinc, prof_formasec, prof_atuasec, prof_imagem, prof_curriculo,prof_nome_arquivo, prof_usua_codigo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String listSQL = "select * from senai.professor order by prof_nome";
+	private String updateSQL = "update senai.professor set prof_nome=?, prof_email=?, prof_telresidencial=?, prof_telcel1=?, prof_telcel2=?, prof_formaprinc=?, prof_atuaprinc=?, prof_formasec=?, prof_atuasec=?, prof_imagem=?, prof_curriculo=?, prof_nome_arquivo=?, prof_usua_codigo=? where prof_codigo=?";
+	private String deleteSQL = "delete from senai.professor where prof_codigo=?";
+	private String getSQL = "select * from senai.professor where prof_codigo=?";
 	private final String user = System.getProperty("user.name");
 	
 	public Professor getProfessor(int codigo) {
@@ -137,41 +137,49 @@ public class ProfessorDAO {
 		c.desconecta();
 	}
 	
-	public void atualizar(Professor p, String nome) {
+	public void atualizar(Professor p, String nome, String filename) {
 		Conexao c = new Conexao();
 		Usuario usua = udao.getUsuarios(nome);
 		try {
+			int len;
 			c.conectar();
 			PreparedStatement ps;
 			ps = c.getConnection().prepareStatement(updateSQL);
+			File file = new File(filename);
+            FileInputStream fis = new FileInputStream(file);
+            len = (int)file.length();
 			ps.setString(1, p.getNome());
 			ps.setString(2, p.getEmail());
 			ps.setString(3, p.getTelResidencial());
 			ps.setString(4, p.getTelCel1());
-			ps.setString(5, p.getTelCel2());
+			ps.setObject(5, p.getTelCel2());
 			ps.setString(6, p.getFormaPrinc());
 			ps.setString(7, p.getAtuaPrinc());
 			ps.setString(8, p.getFormaSec());
 			ps.setString(9, p.getAtuaSec());
 			ps.setBytes(10, p.getImagem());
-			ps.setBytes(11, p.getCurriculo());
+			ps.setBinaryStream(11, fis, len);
 			ps.setString(12, p.getNomeArquivo());
-			ps.setInt(13, usua.getCodigo());
+			ps.setInt(13, p.getUsuario().getCodigo());
 			ps.setInt(14, p.getCodigo());
 			ps.execute();
 			JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
-		}catch(SQLException sqle) {
+		}catch(SQLException | FileNotFoundException sqle) {
 			JOptionPane.showMessageDialog(null, "Não foi possível atualizar dados do professor\n"+sqle.getMessage());
 		}
 		c.desconecta();
 	}
-	public void atualizarSemFoto(Professor p, String nome) {
+	public void atualizarSemFoto(Professor p, String nome, String filename) {
 		Conexao c = new Conexao();
 		Usuario usua = udao.getUsuarios(nome);
 		try {
+			int len;
 			c.conectar();
 			PreparedStatement ps;
-			ps = c.getConnection().prepareStatement("update professor set prof_nome=?, prof_email=?, prof_telresidencial=?, prof_telcel1=?, prof_telcel2=?, prof_formaprinc=?, prof_atuaprinc=?, prof_formasec=?, prof_atuasec=?, prof_curriculo=?, prof_nome_arquivo=?, prof_usua_codigo=? where prof_codigo=?");
+			ps = c.getConnection().prepareStatement("update senai.professor set prof_nome=?, prof_email=?, prof_telresidencial=?, prof_telcel1=?, prof_telcel2=?, prof_formaprinc=?, prof_atuaprinc=?, prof_formasec=?, prof_atuasec=?, prof_curriculo=?, prof_nome_arquivo=?, prof_usua_codigo=? where prof_codigo=?");
+			File file = new File(filename);
+            FileInputStream fis = new FileInputStream(file);
+            len = (int)file.length();
 			ps.setString(1, p.getNome());
 			ps.setString(2, p.getEmail());
 			ps.setString(3, p.getTelResidencial());
@@ -181,14 +189,14 @@ public class ProfessorDAO {
 			ps.setString(7, p.getAtuaPrinc());
 			ps.setString(8, p.getFormaSec());
 			ps.setString(9, p.getAtuaSec());
-			ps.setBytes(10, p.getCurriculo());
+			ps.setBinaryStream(10, fis, len);
 			ps.setString(11, p.getNomeArquivo());
 			ps.setInt(12, usua.getCodigo());
 			ps.setInt(13, p.getCodigo());
 			ps.execute();
 			JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
-		}catch(SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Não foi possível atualizar dados do professor\n"+sqle.getMessage());
+		}catch(SQLException | FileNotFoundException sqle) {
+			JOptionPane.showMessageDialog(null, "Não foi possível atualizar dados do professor\n\n"+sqle.getMessage());
 		}
 		c.desconecta();
 	}
@@ -493,7 +501,7 @@ public class ProfessorDAO {
 			ps.setString(11, p.getNomeArquivo());
 			ps.setInt(12, p.getUsuario().getCodigo());
 			ps.execute();
-			ps.close();
+//			ps.close();
 			JOptionPane.showMessageDialog(null, "Novo professor cadastrado.");
 		}catch(SQLException sqle) {
 			sqle.printStackTrace();
@@ -526,7 +534,7 @@ public class ProfessorDAO {
 			ps.setBytes(10, p.getImagem());
 			ps.setInt(11, p.getUsuario().getCodigo());
 			ps.execute();
-			ps.close();
+//			ps.close();
 			JOptionPane.showMessageDialog(null, "Novo professor cadastrado.");
 		}catch(SQLException sqle) {
 			sqle.printStackTrace();
@@ -554,7 +562,7 @@ public class ProfessorDAO {
 			ps.setString(9, p.getAtuaSec());
 			ps.setInt(10, p.getUsuario().getCodigo());
 			ps.execute();
-			ps.close();
+//			ps.close();
 			JOptionPane.showMessageDialog(null, "Novo professor cadastrado.");
 		}catch(SQLException sqle) {
 			sqle.printStackTrace();

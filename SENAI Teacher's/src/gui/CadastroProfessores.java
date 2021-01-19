@@ -189,7 +189,7 @@ public class CadastroProfessores extends JDialog {
 				Professor p = new Professor();
 				File rota = new File(rota_arquivo);
 				if (tfNome.getText().trim().length() == 0) {
-					JOptionPane.showMessageDialog(null, "Nome obrigtório");
+					JOptionPane.showMessageDialog(null, "Nome obrigatório");
 				} else {
 					if (tfEmail.getText().trim().length() == 0) {
 						JOptionPane.showMessageDialog(null, "Email obrigtório");
@@ -331,7 +331,7 @@ public class CadastroProfessores extends JDialog {
 					tfCurriculo.setText("" + fc.getSelectedFile().getName());
 					rota_arquivo = fc.getSelectedFile().getAbsolutePath();
 					lblPdf.setIcon(new javax.swing.ImageIcon(
-							"C:\\Users\\" + user + "\\Documents\\TSENAI\\src\\Imagem\\lpdf.png"));
+							"C:\\Users\\" + user + "\\Documents\\SENAI Teachers\\src\\Imagem\\lpdf.png"));
 					File arquivo = fc.getSelectedFile();
 					String caminho = arquivo.getAbsolutePath();
 					caminho = caminho.replace('\\', '/');

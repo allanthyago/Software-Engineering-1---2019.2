@@ -1,0 +1,9 @@
+INDEX VERSION 1.131+C:\Users\thyag\Documents\Allan\UFAC\6ºP\TESI 2\Senai\.metadata\.plugins\org.eclipse.jdt.core
+2142118396.index
+3774219922.index
+433165015.index
+140264595.index
+2249870381.index
+814177836.index
+3788483274.index
+2168695301.index
