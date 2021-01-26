@@ -197,7 +197,7 @@ public class ObservacaoDAO {
 			stm.setString(5, p.getTipo());
 			stm.setInt(6, p.getCodigo());
 			stm.execute();
-			JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
+			JOptionPane.showMessageDialog(null, "Observação atualizada com sucesso");
 		}catch(SQLException sqle) {
 			JOptionPane.showMessageDialog(null, "Não foi possível atualizar observação do professor\n"+sqle.getMessage());
 		}

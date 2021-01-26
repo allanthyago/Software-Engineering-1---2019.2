@@ -115,7 +115,7 @@ public class AlterarSenha extends JDialog {
 									passwordField_1.setText("");
 									passwordField_2.setText("");
 								}else {
-									if(new String(passwordField.getPassword()).isEmpty() || new String(passwordField_1.getPassword()).isEmpty() || new String(passwordField_2.getPassword()).isEmpty()) {
+									if(new String(passwordField.getPassword()).trim().length()==0 || new String(passwordField_1.getPassword()).trim().length()==0 || new String(passwordField_2.getPassword()).trim().length()==0) {
 										JOptionPane.showMessageDialog(null, "Campos em branco");
 										passwordField.setText("");
 										passwordField_1.setText("");

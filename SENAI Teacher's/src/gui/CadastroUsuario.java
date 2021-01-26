@@ -92,7 +92,7 @@ public class CadastroUsuario extends JDialog {
 				if(e.getSource()==btnSalvar) {
 					UsuarioDAO pdao = new UsuarioDAO();
 					Usuario p = new Usuario();
-					if(tfNome.getText().isEmpty() || tfLogin.getText().isEmpty() || pfSenha.getText().isEmpty()) {
+					if(tfNome.getText().trim().length()==0 || tfLogin.getText().trim().length()==0 || pfSenha.getPassword().length==0) {
 						JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios");
 					}else {
 						p.setNome(tfNome.getText());

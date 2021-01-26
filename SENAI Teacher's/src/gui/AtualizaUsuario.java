@@ -101,16 +101,20 @@ public class AtualizaUsuario extends JDialog {
 				if(e.getSource()==btnSalvar) {
 					UsuarioDAO udao = new UsuarioDAO();
 					Usuario u = new Usuario();
-					u.setCodigo(Integer.parseInt(tfCodigo.getText()));
-					u.setNome(tfNome.getText());
-					u.setLogin(tfLogin.getText());
-					u.setSenha(new String(pfSenha.getPassword()));
-					u.setPerfil(comboBox.getSelectedItem().toString());
-					udao.alterar(u);
-					TabelaUsuarios.carregaDados(model);
-					setVisible(false);
-					TabelaUsuarios td = new TabelaUsuarios();
-					td.setVisible(true);
+					if(tfNome.getText().trim().length()==0 || tfLogin.getText().trim().length()==0 || pfSenha.getPassword().length==0) {
+						JOptionPane.showMessageDialog(null, "Preencha todos os dados");
+					}else {
+						u.setCodigo(Integer.parseInt(tfCodigo.getText()));
+						u.setNome(tfNome.getText());
+						u.setLogin(tfLogin.getText());
+						u.setSenha(new String(pfSenha.getPassword()));
+						u.setPerfil(comboBox.getSelectedItem().toString());
+						udao.alterar(u);
+						TabelaUsuarios.carregaDados(model);
+						setVisible(false);
+						TabelaUsuarios td = new TabelaUsuarios();
+						td.setVisible(true);
+					}
 				}
 			}
 		});
